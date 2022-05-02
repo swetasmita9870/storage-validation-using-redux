@@ -18,7 +18,7 @@ const Index = () => {
     };
     const [userDetail, setUserDetail] = useState(initialValue);
     const [toggleSubmit, setToggleSubmit] = useState(true);
-    const[modalOpen, setModalOpen] = useState({show:false,id:''})
+    const [modalOpen, setModalOpen] = useState({ show: false, id: '' })
     const { uname, roll, subject, select } = userDetail;
     const [userId, setUserId] = useState()
     const list = useSelector((state) => state.formReducers.list)
@@ -27,10 +27,10 @@ const Index = () => {
     const handleChange = (e) => {
         setUserDetail(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
-   
-  const handlermodal = () =>{
-      setModalOpen(prev=>({...prev,show:!prev.show}))
-  }
+
+    const handlermodal = () => {
+        setModalOpen(prev => ({ ...prev, show: !prev.show }))
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         allRollNo = list?.map((elem) => elem.userDetail.roll)
@@ -53,7 +53,7 @@ const Index = () => {
     }
     const editData = (id) => {
         setUserId(id)
-        
+
         let newEditData = list.find((elem) => {
             return elem.id === id;
         });
@@ -65,9 +65,6 @@ const Index = () => {
         dispatch(deleteData(elem))
     }
     const handleSave = (e, id, newuser) => {
-        // console.log("id",id);
-        console.log("newuser",newuser);
-        console.log("userId",userId);
         e.preventDefault();
         dispatch(saveData(id, newuser))
         setToggleSubmit(true);
@@ -77,7 +74,7 @@ const Index = () => {
     return (
         <>
             <div>
-                <Form list={list} setModalOpen={setModalOpen}  editData={editData} handleChange={handleChange} handleSubmit={handleSubmit} handleSave={handleSave} toggleSubmit={toggleSubmit} uname={uname} roll={roll}
+                <Form list={list} setModalOpen={setModalOpen} editData={editData} handleChange={handleChange} handleSubmit={handleSubmit} handleSave={handleSave} toggleSubmit={toggleSubmit} uname={uname} roll={roll}
                     select={select} userDetail={userDetail} subject={subject} userId={userId} />
 
                 <BrowserView>
